@@ -7,10 +7,7 @@ import torch.nn.functional as F
 from dgl.nn import GATv2Conv
 from .basicmodel import BasicModel
 from dgl import readout_nodes
-'''
-增添了cross_attn作为特征融合方式
-使用dataprogress0830.py中的datamodule
-'''
+
 
 class NodeEncoder(nn.Module):
     """节点/边编码模块：将原始特征映射为固定维度嵌入"""

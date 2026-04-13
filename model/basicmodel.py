@@ -14,20 +14,9 @@ from torch.optim.lr_scheduler import ReduceLROnPlateau
 import copy
 
 class BasicModel(pl.LightningModule):
-    '''
-    有mol_feat
-    '''
+
     def __init__(self, num_classes=2, optimizer=None, loss_fn=None, lr_scheduler=None, lr=1e-3):
-        """
-        基础分类模型类，用于创建具体的分类模型。
-        
-        参数:
-            num_classes (int): 分类任务的类别数量。
-            optimizer (torch.optim.Optimizer, optional): 优化器，默认为 Adam。
-            loss_fn (callable, optional): 损失函数，默认为交叉熵损失。
-            lr_scheduler (torch.optim.lr_scheduler, optional): 学习率调度器，默认为 ReduceLROnPlateau。
-            lr (float, optional): 学习率，默认为 1e-3。
-        """
+
         super().__init__()
         self.num_classes = num_classes
         self.optimizer = optimizer if optimizer else Adam

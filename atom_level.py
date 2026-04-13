@@ -8,7 +8,7 @@ from torch.utils.data import Dataset, DataLoader
 
 from MolTokenizer import MolTokenizer
 from pytorch_lightning import LightningDataModule
-from may22_utils import get_fps
+from utils import get_fps
 import pandas as pd
 
 token_path = "data/motifs_token_id.json"

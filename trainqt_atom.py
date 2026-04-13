@@ -1,7 +1,7 @@
 import torch
 import pytorch_lightning as pl
-from may22_atom_level import AtomDataModule
-from model.may22_modeldiqt import AttentiveFP_DGL
+from atom_level import AtomDataModule
+from model.modeldiqt import AttentiveFP_DGL
 from pytorch_lightning import Trainer
 from MolTokenizer import MolTokenizer
 import utils
@@ -38,7 +38,7 @@ def graph_train():
         callbacks=[
             pl.callbacks.EarlyStopping(monitor="val_loss", patience=20, mode="min"),
             pl.callbacks.ModelCheckpoint(
-                dirpath=f'./checkpoints/3.30-{random}/{method}-{seed}-checkpoints-qt',
+                dirpath=f'./checkpoints/{date}-{random}/{method}-{seed}-checkpoints-qt',
                 filename= f'model-' + '{epoch}-{val_loss:.4f}',
                 monitor="val_loss", mode="min", 
                 save_top_k=1,
@@ -59,16 +59,18 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='训练模型')
     parser.add_argument('--method', type=str, default='all', help='方法')
     parser.add_argument('--random', type=str, default='all', help='随机数')
+    parser.add_argument('--date', type=str, default='now', help='日期')
     args = parser.parse_args()
     method = args.method
     random = args.random
+    date = args.date
 
     # 定义数据集路径
     train_path = 'data/DIQT/train.csv'
     val_path = 'data/DIQT/val.csv'
     test_path = 'data/DIQT/test.csv'
 
-    feature_path = "data/motifs2features0825.parquet"
+    feature_path = "data/motifs2features.parquet"
     token_path = "data/motifs_token_id.json"
     tokenizer = MolTokenizer(token_path)
 

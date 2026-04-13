@@ -8,7 +8,7 @@ import torch
 from torch.utils.data import DataLoader, Dataset
 from pytorch_lightning import LightningDataModule
 import os
-from may22_utils import get_feature_data, get_fps, scaffold_split
+from utils import get_feature_data, get_fps, scaffold_split
 
 class GraphDataset(Dataset):
     def __init__(self, smiles, labels, all_feature_data, tokenizer):
@@ -138,25 +138,25 @@ class GraphDataModule(LightningDataModule):
         
         return batched_graph, labels, mol_feat, fps, list(smiles)
 def data_pre(seed):
-    data = pd.read_csv('/home/wzn/sdbw6/lwl/data/DIQT/DIQT.csv')
+    data = pd.read_csv('data/DIQT/DIQT.csv')
     train_df, val_df, test_df = scaffold_split(data, random_seed=seed)
-    train_df.to_csv("/home/wzn/sdbw6/lwl/data/DIQT/train.csv", index=False)
-    val_df.to_csv("/home/wzn/sdbw6/lwl/data/DIQT/val.csv", index=False)
-    test_df.to_csv("/home/wzn/sdbw6/lwl/data/DIQT/test.csv", index=False)
+    train_df.to_csv("data/DIQT/train.csv", index=False)
+    val_df.to_csv("data/DIQT/val.csv", index=False)
+    test_df.to_csv("data/DIQT/test.csv", index=False)
 
 
 if __name__ == '__main__':
-    data = pd.read_csv('/home/wzn/sdbw6/lwl/data/faers/faers0923.csv')
+    data = pd.read_csv('data/faers/faers.csv')
     train_df, val_df, test_df = scaffold_split(data, random_seed=2025)
-    train_df.to_csv("/home/wzn/sdbw6/lwl/data/faers/train.csv", index=False)
-    val_df.to_csv("/home/wzn/sdbw6/lwl/data/faers/val.csv", index=False)
-    test_df.to_csv("/home/wzn/sdbw6/lwl/data/faers/test.csv", index=False)
+    train_df.to_csv("data/faers/train.csv", index=False)
+    val_df.to_csv("data/faers/val.csv", index=False)
+    test_df.to_csv("data/faers/test.csv", index=False)
 
-    # data = pd.read_csv('/home/wzn/sdbw6/lwl/data/DIQT/DIQT.csv')
+    # data = pd.read_csv('data/DIQT/DIQT.csv')
     # train_df, val_df, test_df = scaffold_split(data, random_seed=2025)
-    # train_df.to_csv("/home/wzn/sdbw6/lwl/data/DIQT/train.csv", index=False)
-    # val_df.to_csv("/home/wzn/sdbw6/lwl/data/DIQT/val.csv", index=False)
-    # test_df.to_csv("/home/wzn/sdbw6/lwl/data/DIQT/test.csv", index=False)
+    # train_df.to_csv("data/DIQT/train.csv", index=False)
+    # val_df.to_csv("data/DIQT/val.csv", index=False)
+    # test_df.to_csv("data/DIQT/test.csv", index=False)
 
     
 

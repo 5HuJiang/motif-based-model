@@ -230,26 +230,7 @@ class MolTokenizer():
         return (cliques, edges, subset_bonds)  # 返回分解后的子集和边列表
 
 
-if __name__ == "__main__":
-    import pandas as pd
 
-    """ 主程序入口，测试分子分词器 """
-    mol_token = MolTokenizer(r"./data/motifs_token_id_0913.json")
-    # data = pd.read_csv(r'data/fears/faers_0913_0.csv')
-    # smiles = data['SMILES']
-    # colors = ['#FF0000', '#00FF00', '#0000FF']
-    # for i, smi in enumerate(smiles):
-    #     mol_token.tokenize(smi)
-    
-    # print(mol_token.vocab_size)
-    # vocab = mol_token.vocab
-    # with open("./data/motifs_token_id_0913.json", "w", encoding="utf-8") as f:
-    #     json.dump(vocab, f, indent=2, ensure_ascii=False)
-    smi = 'ClC1=CC=C2N=C3NC(=O)CN3CC2=C1Cl'
-    motif_list, edge, ids, subset_bonds = mol_token.tokenize(smi)
-    print(motif_list, edge, ids, subset_bonds)
-    for i in motif_list:
-        print(mol_token.id_to_token[i])
 
 
 
