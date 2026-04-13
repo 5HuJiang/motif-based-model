@@ -230,6 +230,13 @@ class MolTokenizer():
         return (cliques, edges, subset_bonds)  # 返回分解后的子集和边列表
 
 
+if __name__ == "__main__":
+    data = pd.read_csv('data/faers/faers.csv')
+    tokenizer = MolTokenizer('data/motifs_token_id.json')
+    for smi in data['SMILES']:
+        motif_list, edge, ids, subset_bonds = tokenizer.tokenize(smi)
+    with open("./data/motifs_token_id_new.json", "w", encoding="utf-8") as f:
+        json.dump(tokenizer.vocab, f, indent=2, ensure_ascii=False)
 
 
 
